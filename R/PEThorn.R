@@ -51,16 +51,16 @@
     PE <- numeric(sum(take))
     monlen <- monlen[take]
     temp <- temp[take]
+    ## c is daylength per 12h
     tandecl <- tandecl[take]
-    hot <- temp >= 26.5
+    c <- -tan(lat/180*pi)*tandecl
+    c <- acos(pmin(1, pmax(-1, c)))/pi*2
     ## coefficients for hot are from fitted parabola to data in
     ## Thornthwaite (1948) Fig. 13, p. 94.
+    hot <- temp >= 26.5
     if (any(hot))
         PE[hot] <- -415.855 + 32.244*temp[hot] - 0.43253*temp[hot]^2
     if (any(!hot)) {
-        ## c is daylength per 12h
-        c <- -tan(lat/180*pi)*tandecl[!hot]
-        c <- acos(pmin(1, pmax(-1, c)))/pi*2
         ## Thornthwaite 1948, eq. 9 and around
         Ival <- sum((temp/5)^1.514)
         ## This is not in the original paper, but it seems that Ival
@@ -74,5 +74,6 @@
         A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
         PE[!hot] <- 16*c*(10*temp[!hot]/Ival)^A
     }
-    sum(monlen*PE)
+    ## PE is for 30-days month with 12h daylight: adjust
+    sum(c*monlen*PE)
 }
