@@ -1,3 +1,12 @@
+#' Thornthwaite's Potential Evapotranspiration
+#'
+#' @references Thornthwaite C.W. (1948) An approach toward a rational
+#' classification of climate. \emph{Geographical Review} 38, 55--94.
+#'
+#' @param temp Vector of 12 values of monthly mean temperatures in Centigrade. 
+#' @param lat Latitude in degrees.
+#' 
+#' @export
 `PEThorn` <-
     function (temp, lat) 
 {
