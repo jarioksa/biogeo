@@ -17,9 +17,11 @@
     PE <- numeric(sum(take))
     temp <- temp[take]
     tandecl <- tandecl[take]
-    hot <- temp > 26.5
+    hot <- temp >= 26.5
+    ## coefficients for hot are from fitted parabola to data in
+    ## Thornthwaite (1948) Fig. 13, p. 94.
     if (any(hot))
-        PE[hot] <- -415.84 + 32.24*temp[hot] - 0.435*temp[hot]^2
+        PE[hot] <- -415.855 + 32.244*temp[hot] - 0.43253*temp[hot]^2
     if (any(!hot)) {
         c <- -tan(lat/180*pi)*tandecl[!hot]
         c <- acos(pmin(1, pmax(-1, c)))/pi*2
