@@ -4,12 +4,15 @@
 \alias{PEThorn}
 \title{Thornthwaite's Potential Evapotranspiration}
 \usage{
-PEThorn(temp, lat)
+PEThorn(temp, lat, twist = FALSE)
 }
 \arguments{
 \item{temp}{Vector of 12 values of monthly mean temperatures in Centigrade.}
 
 \item{lat}{Latitude in degrees.}
+
+\item{twist}{Adapt model to winter-seasonal climate by adjusting
+the equations to the number of months with positive temperature.}
 }
 \description{
 Thornthwaite's Potential Evapotranspiration
