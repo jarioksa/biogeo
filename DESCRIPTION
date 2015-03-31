@@ -1,8 +1,9 @@
 Package: biogeo
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
-Depends: R (>= 3.3.0)
-License: What license is it under?
+Title: Tools for Biogeography Lecturers
+Version: 0.0-1
+Date: 2015-03-31
+Authors@R: person("Jari", "Oksanen", , "jari.oksanen@oulu.fi", role = c("aut", "cre"))
+Description: Tools for basic biogeographical analysis and dispaly
+License: GPL-2
 LazyData: true
+URL: http://cc.oulu.fi/~jarioksa/
