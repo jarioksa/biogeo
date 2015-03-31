@@ -24,7 +24,7 @@
         c <- -tan(lat/180*pi)*tandecl[!hot]
         c <- acos(pmin(1, pmax(-1, c)))/pi*2
         Ival <- sum((temp/5)^1.514)
-        A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.79e-2*Ival + 0.492
+        A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
         PE[!hot] <- 16*c*(10*temp[!hot]/Ival)^A
     }
     sum(PE)
