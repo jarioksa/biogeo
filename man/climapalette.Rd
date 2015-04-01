@@ -4,8 +4,7 @@
 \alias{climapalette}
 \title{Climatic Colour Codes for Vegetation Types}
 \usage{
-climapalette(type, humidity = -PEratio, continentality = Cont,
-  temperature = -PET)
+climapalette(type, humidity, continentality, temperature)
 }
 \arguments{
 \item{type}{Community type.}
@@ -18,6 +17,11 @@ Function finds RGB colour codes for vegetation types using three
 variables. Choosing climatic variables matching the parameter names
 gives maximum values to equatorial rainforest with abundant rains,
 equitable non-continental temperature and high temperature.
+}
+\examples{
+data(climaveg)
+clr <- with(climaveg, climapalette(sagetype, -PEratio, Cont, -PET))
+with(climaveg, plot(lon, lat, pch=15, cex=0.3, asp=1, col = clr[sagetype]))
 }
 \author{
 Jari Oksanen

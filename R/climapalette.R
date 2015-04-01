@@ -6,6 +6,11 @@
 #' equitable non-continental temperature and high temperature.
 #'
 #' @author Jari Oksanen
+#'
+#' @examples
+#' data(climaveg)
+#' clr <- with(climaveg, climapalette(sagetype, -PEratio, Cont, -PET))
+#' with(climaveg, plot(lon, lat, pch=15, cex=0.3, asp=1, col = clr[sagetype]))
 #' 
 #' @param type Community type.
 #' @param humidity,continentality,temperature Environmental variables
@@ -13,8 +18,7 @@
 #'
 #' @export
 `climapalette` <-
-    function (type, humidity = -PEratio, continentality = Cont,
-              temperature = -PET) 
+    function (type, humidity, continentality, temperature) 
 {
     r <- tapply(humidity, type, mean)
     g <- tapply(continentality, type, mean)
