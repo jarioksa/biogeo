@@ -72,7 +72,7 @@
         if (twist)
             Ival <- Ival * 12/length(temp)
         A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
-        PE[!hot] <- 16*c*(10*temp[!hot]/Ival)^A
+        PE[!hot] <- 16*(10*temp[!hot]/Ival)^A
     }
     ## PE is for 30-days month with 12h daylight: adjust
     sum(c*monlen*PE)
