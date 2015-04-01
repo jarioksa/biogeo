@@ -3,7 +3,7 @@ Title: Tools for Biogeography Lecturers
 Version: 0.0-1
 Date: 2015-03-31
 Authors@R: person("Jari", "Oksanen", , "jari.oksanen@oulu.fi", role = c("aut", "cre"))
-Description: Tools for basic biogeographical analysis and dispaly
+Description: Tools for basic biogeographical analysis and display.
 License: GPL-2
 LazyData: true
 URL: http://cc.oulu.fi/~jarioksa/
