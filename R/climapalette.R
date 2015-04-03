@@ -5,6 +5,11 @@
 #' gives maximum values to equatorial rainforest with abundant rains,
 #' equitable non-continental temperature and high temperature.
 #'
+#' @return RGB colours for classes plus attributes that give the order
+#' of classes in each colour (\code{rorder}, \code{gorder},
+#' \code{border}). The attributes help in making nicely ordered
+#' legends.
+#'
 #' @author Jari Oksanen
 #'
 #' @examples
@@ -26,5 +31,9 @@
     r <- (r - min(r))/diff(range(r))
     g <- (g - min(g))/diff(range(g))
     b <- (b - min(b))/diff(range(b))
-    rgb(red = r, green = g, blue = b)
+    out <- rgb(red = r, green = g, blue = b)
+    attr(out, "rorder") <- order(r)
+    attr(out, "gorder") <- order(g)
+    attr(out, "border") <- order(b)
+    out
 }

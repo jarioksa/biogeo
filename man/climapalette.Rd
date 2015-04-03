@@ -12,6 +12,12 @@ climapalette(type, humidity, continentality, temperature)
 \item{humidity,continentality,temperature}{Environmental variables
 used for red, green and blue in colours.}
 }
+\value{
+RGB colours for classes plus attributes that give the order
+of classes in each colour (\code{rorder}, \code{gorder},
+\code{border}). The attributes help in making nicely ordered
+legends.
+}
 \description{
 Function finds RGB colour codes for vegetation types using three
 variables. Choosing climatic variables matching the parameter names
