@@ -3,22 +3,24 @@
 #' Function estimates the Potential Evapotranspiration (PET) from
 #' monthly mean temperatures following Thornthwaite (1948). The
 #' original equations were calibrated for U.S.A., and were the first
-#' attempt at finding PET from readily available meteorological data.
+#' attempt at finding PET from readily available meteorological
+#' data. Thornthwaite (1948) used different models for hot and cool
+#' months with limit of 26.5 degrees C. Same monthly mean temperature
+#' generated lower PET in hot than in cool climate, and this was
+#' accommodated for by a \sQuote{heat index}. The cool and hot climate
+#' equations should generate the same (approximately) PET at 26.5
+#' degrees C, but this only happens in the range of \sQuote{heat
+#' index} within U.S.A. excluding Alaska and high altitude Rocky
+#' Mountains. \code{PEThorn} function will restrict the value of the
+#' \code{heat index} into this U.S. range. Details can be interpreted
+#' from the source code.
 #'
 #' Function \code{\link[SPEI]{thornthwaite}} (package \pkg{SPEI})
-#' provides an alternative implementation, with two important
-#' differences: (1) Thornthwaite (1948) suggested that the basic
-#' equations should be used only up to 26.5 degrees, and then we
-#' should use to a parabolic model which was given in tabular
-#' form. The \code{PEThorn} uses estimated polynomial coefficients of
-#' this parabola for monthly temperatures over 26.5 degrees, whereas
-#' \pkg{SPEI} package uses the same basic equations which give much
-#' higher values. (2) In winter-seasonal climates, the basic equations
-#' can actually give increased PET with cooler climate and shorter
-#' period of positive temperatures. The \code{PEThorn} function
-#' adjusts the model coefficient (\eqn{I}) for the length of the
-#' period with positive temperatures. This is unpublished, but seems
-#' to improve the estimates in near-arctic conditions.
+#' provides an alternative implementation, but it uses the same basic
+#' equations also in hot climates (montly mean > 26.5 degrees), and
+#' does not restrict the range of accepted \sQuote{heat index}. Small
+#' numerical differences are also caused by the algorithms of
+#' estimating the day length.
 #'
 #' @seealso Package \pkg{SPEI} has a wider choice of indices of PET,
 #' among them Hargreaves index and its modification
@@ -33,14 +35,13 @@
 #' @references Thornthwaite C.W. (1948) An approach toward a rational
 #' classification of climate. \emph{Geographical Review} 38, 55--94.
 #'
-#' @param temp Vector of 12 values of monthly mean temperatures in Centigrade. 
+#' @param temp Vector of 12 values of monthly mean temperatures in
+#' degrees C.
 #' @param lat Latitude in degrees.
-#' @param twist Adapt model to winter-seasonal climate by adjusting
-#' the equations to the number of months with positive temperature.
 #' 
 #' @export
 `PEThorn` <-
-    function (temp, lat, twist = FALSE)
+    function (temp, lat)
 {
     tandecl <- c(-0.384925, -0.22606, -0.02156, 0.182725, 0.35105, 0.432297, 0.388417, 0.242569, 0.048042, -0.157378, -0.337603, -0.430845)
     ## Thornthwaite uses 30-days months (Thornthwaite 1948, p. 94). 
@@ -61,16 +62,22 @@
     if (any(hot))
         PE[hot] <- -415.855 + 32.244*temp[hot] - 0.43253*temp[hot]^2
     if (any(!hot)) {
-        ## Thornthwaite 1948, eq. 9 and around
+        ## Thornthwaite 1948, eq. 9 and around. 
         Ival <- sum((temp/5)^1.514)
-        ## This is not in the original paper, but it seems that Ival
-        ## must be adapted to short growing season in winter-climate,
-        ## or shortening period of positive temperatures may increase
-        ## PET, and PET can never reach values much below 500mm. This
-        ## mainly concerns near-arctic climates where reversals of PET
-        ## are common without this twist.
-        if (twist)
-            Ival <- Ival * 12/length(temp)
+        ## Ival is a "heat index" that adjusts the PET curve to local
+        ## climate: cooler climates have higher PET with the same
+        ## monthly mean temperature. The following equations calibrate
+        ## PET so that at temperature 26.5 C the monthly PE is 135
+        ## mm. This is valid for range Ival=20..140 (or more exatly
+        ## 20.99..139.63) which covers whole U.S.A. except high
+        ## mountain Rockies and Alaska, but excludes most of the
+        ## world. Below we restrain the Ival at this limit of valid
+        ## operation to avoid over-estimation of PET in cool climates
+        ## and underestimation in hot tropics.
+        if(Ival < 20)
+            Ival <- 20
+        if(Ival > 140)
+            Ival <- 140
         A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
         PE[!hot] <- 16*(10*temp[!hot]/Ival)^A
     }
