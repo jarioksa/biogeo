@@ -21,9 +21,10 @@
   \item{PrecCV}{Coefficient of variation of monthly precipitation.}
   \item{PEratio}{Ratio of \code{Prec} and \code{PET}.}
   \item{Precsummerat}{Ratio of \code{Precsummer} and \code{Prec}.}
-  \item{PETtwist}{\code{PET} with a twist of \code{\link{PEThorn}}.}
   \item{PETHar, PETHarM}{Hargreaves PET and modified Hargreaves PET
     calculated with \code{\link[SPEI]{hargreaves}} (\pkg{SPEI} package).}
+  \item{TDayRange}{Mean difference of daily minimum and maximum
+    temperatures.}
 }}
 \usage{
 climaveg
