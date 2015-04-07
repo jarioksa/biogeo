@@ -38,10 +38,11 @@
 #' @param temp Vector of 12 values of monthly mean temperatures in
 #' degrees C.
 #' @param lat Latitude in degrees.
+#' @param monthly (logical) Return monthly values instead of annual total. 
 #' 
 #' @export
 `PEThorn` <-
-    function (temp, lat)
+    function (temp, lat, monthly = FALSE)
 {
     tandecl <- c(-0.384925, -0.22606, -0.02156, 0.182725, 0.35105, 0.432297, 0.388417, 0.242569, 0.048042, -0.157378, -0.337603, -0.430845)
     ## Thornthwaite uses 30-days months (Thornthwaite 1948, p. 94). 
@@ -82,5 +83,12 @@
         PE[!hot] <- 16*(10*temp[!hot]/Ival)^A
     }
     ## PE is for 30-days month with 12h daylight: adjust
-    sum(c*monlen*PE)
+    PE <- c*monlen*PE
+    if (monthly) {
+        out <- structure(numeric(12), names = month.abb)
+        out[take] <- PE
+        out
+    } else {
+        sum(PE)
+    }
 }
