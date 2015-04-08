@@ -39,10 +39,10 @@
 #' degrees C.
 #' @param lat Latitude in degrees.
 #' @param monthly (logical) Return monthly values instead of annual total. 
-#' 
+#' @param twist Experimental argument.
 #' @export
 `PEThorn` <-
-    function (temp, lat, monthly = FALSE)
+    function (temp, lat, monthly = FALSE, twist = FALSE)
 {
     tandecl <- c(-0.384925, -0.22606, -0.02156, 0.182725, 0.35105, 0.432297, 0.388417, 0.242569, 0.048042, -0.157378, -0.337603, -0.430845)
     ## Thornthwaite uses 30-days months (Thornthwaite 1948, p. 94). 
@@ -75,11 +75,15 @@
         ## world. Below we restrain the Ival at this limit of valid
         ## operation to avoid over-estimation of PET in cool climates
         ## and underestimation in hot tropics.
-        if(Ival < 20)
-            Ival <- 20
-        if(Ival > 140)
-            Ival <- 140
-        A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
+        if(twist)
+            A <- 2.132686/log(265/Ival)
+        else {
+            if(Ival < 20)
+                Ival <- 20
+            if(Ival > 140)
+                Ival <- 140
+            A <- 6.75e-7*Ival^3 - 7.71e-5*Ival^2 + 1.792e-2*Ival + 0.49239
+        }
         PE[!hot] <- 16*(10*temp[!hot]/Ival)^A
     }
     ## PE is for 30-days month with 12h daylight: adjust

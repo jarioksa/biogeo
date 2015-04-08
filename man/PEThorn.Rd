@@ -4,7 +4,7 @@
 \alias{PEThorn}
 \title{Thornthwaite's Potential Evapotranspiration}
 \usage{
-PEThorn(temp, lat, monthly = FALSE)
+PEThorn(temp, lat, monthly = FALSE, twist = FALSE)
 }
 \arguments{
 \item{temp}{Vector of 12 values of monthly mean temperatures in
@@ -13,6 +13,8 @@ degrees C.}
 \item{lat}{Latitude in degrees.}
 
 \item{monthly}{(logical) Return monthly values instead of annual total.}
+
+\item{twist}{Experimental argument.}
 }
 \value{
 Annual potential evapotranspiration in mm.
