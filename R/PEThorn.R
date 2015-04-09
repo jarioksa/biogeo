@@ -39,7 +39,7 @@
 #' degrees C.
 #' @param lat Latitude in degrees.
 #' @param monthly (logical) Return monthly values instead of annual total. 
-#' @param heatlemitUSA (logical) Limit heat index to calibrated values
+#' @param heatlimitUSA (logical) Limit heat index to calibrated values
 #' within USA.
 #' @param daylimit50 (logical) Do not use latitudes >50 in daylength
 #' calculation.

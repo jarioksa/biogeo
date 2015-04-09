@@ -15,11 +15,11 @@ degrees C.}
 
 \item{monthly}{(logical) Return monthly values instead of annual total.}
 
+\item{heatlimitUSA}{(logical) Limit heat index to calibrated values
+within USA.}
+
 \item{daylimit50}{(logical) Do not use latitudes >50 in daylength
 calculation.}
-
-\item{heatlemitUSA}{(logical) Limit heat index to calibrated values
-within USA.}
 }
 \value{
 Annual potential evapotranspiration in mm.
