@@ -53,10 +53,10 @@
     PE <- numeric(sum(take))
     monlen <- monlen[take]
     temp <- temp[take]
-    ## c is daylength per 12h
+    ## daylength per 12h
     tandecl <- tandecl[take]
-    c <- -tan(lat/180*pi)*tandecl
-    c <- acos(pmin(1, pmax(-1, c)))/pi*2
+    daylen <- -tan(lat/180*pi)*tandecl
+    daylen <- acos(pmin(1, pmax(-1, daylen)))/pi*2
     ## coefficients for hot are from fitted parabola to data in
     ## Thornthwaite (1948) Fig. 13, p. 94.
     hot <- temp >= 26.5
@@ -87,7 +87,7 @@
         PE[!hot] <- 16*(10*temp[!hot]/Ival)^A
     }
     ## PE is for 30-days month with 12h daylight: adjust
-    PE <- c*monlen*PE
+    PE <- daylen*monlen*PE
     if (monthly) {
         out <- structure(numeric(12), names = month.abb)
         out[take] <- PE
