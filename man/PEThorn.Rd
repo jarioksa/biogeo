@@ -4,7 +4,8 @@
 \alias{PEThorn}
 \title{Thornthwaite's Potential Evapotranspiration}
 \usage{
-PEThorn(temp, lat, monthly = FALSE, twist = FALSE)
+PEThorn(temp, lat, monthly = FALSE, heatlimitUSA = TRUE,
+  daylimit50 = TRUE)
 }
 \arguments{
 \item{temp}{Vector of 12 values of monthly mean temperatures in
@@ -14,7 +15,11 @@ degrees C.}
 
 \item{monthly}{(logical) Return monthly values instead of annual total.}
 
-\item{twist}{Experimental argument.}
+\item{daylimit50}{(logical) Do not use latitudes >50 in daylength
+calculation.}
+
+\item{heatlemitUSA}{(logical) Limit heat index to calibrated values
+within USA.}
 }
 \value{
 Annual potential evapotranspiration in mm.

@@ -39,10 +39,14 @@
 #' degrees C.
 #' @param lat Latitude in degrees.
 #' @param monthly (logical) Return monthly values instead of annual total. 
-#' @param twist Experimental argument.
+#' @param heatlemitUSA (logical) Limit heat index to calibrated values
+#' within USA.
+#' @param daylimit50 (logical) Do not use latitudes >50 in daylength
+#' calculation.
 #' @export
 `PEThorn` <-
-    function (temp, lat, monthly = FALSE, twist = FALSE)
+    function(temp, lat, monthly = FALSE, heatlimitUSA = TRUE,
+              daylimit50 = TRUE)
 {
     tandecl <- c(-0.384925, -0.22606, -0.02156, 0.182725, 0.35105, 0.432297, 0.388417, 0.242569, 0.048042, -0.157378, -0.337603, -0.430845)
     ## Thornthwaite uses 30-days months (Thornthwaite 1948, p. 94). 
@@ -54,6 +58,12 @@
     monlen <- monlen[take]
     temp <- temp[take]
     ## daylength per 12h
+    if (daylimit50) {
+        if(lat > 50)
+            lat <- 50
+        if(lat < -50)
+            lat <- -50
+    }
     tandecl <- tandecl[take]
     daylen <- -tan(lat/180*pi)*tandecl
     daylen <- acos(pmin(1, pmax(-1, daylen)))/pi*2
@@ -75,7 +85,7 @@
         ## world. Below we restrain the Ival at this limit of valid
         ## operation to avoid over-estimation of PET in cool climates
         ## and underestimation in hot tropics.
-        if(twist)
+        if(!heatlimitUSA)
             A <- 2.132686/log(265/Ival)
         else {
             if(Ival < 20)
