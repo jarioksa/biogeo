@@ -103,6 +103,8 @@
         rng[2] <- max(rng[2], rng[1]+mrange)
     plot(tmon, tline, ylim=rng, xaxs="i",  type="n", ax=FALSE,
          xlab="", ylab="")
+    if (!missing(title))
+        title(main = title)
     if (any(prec > 100)) {
         wetrun <- rle(pline >= 50)
         end <- cumsum(wetrun$lengths)
