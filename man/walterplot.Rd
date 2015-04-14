@@ -18,7 +18,7 @@ walterplot(temp, prec, title, south = FALSE, ylim, mrange, lwd = 3)
 \item{ylim}{limits of y-axis in temperature units. The graph will
 not be clipped, but the argument can be used to extend the axes.}
 
-\item{mrange}{Maximum range of y-axis in temperature units.}
+\item{mrange}{Minimum range of y-axis in temperature units.}
 
 \item{lwd}{Line width of temperature and precipitation lines.}
 }

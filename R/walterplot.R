@@ -31,7 +31,7 @@
 #' @param south (logical): is the location in southern hemisphere?
 #' @param ylim limits of y-axis in temperature units. The graph will
 #' not be clipped, but the argument can be used to extend the axes.
-#' @param mrange Maximum range of y-axis in temperature units.
+#' @param mrange Minimum range of y-axis in temperature units.
 #' @param lwd Line width of temperature and precipitation lines.
 #'
 #' @export
