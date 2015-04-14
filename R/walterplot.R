@@ -87,7 +87,8 @@
         beg <- beg[-length(beg)]
         for(i in 1:length(beg)) {
             z <- cross(rep(0, length(tline)), tline, beg[i])$x
-            x[i] <-  z + pmon[beg[i]]
+            step <- diff(tmon[beg[i]:(beg[i]+1)])
+            x[i] <-  z*step + tmon[beg[i]]
         }
         tline <- c(tline, y)
         tmon <- c(tmon, x)
@@ -160,4 +161,3 @@
     axis(4, at=seq(0, 10*ceiling(max(pline/10)), by=10), labels=FALSE)
     abline(h=0)
 }
-
