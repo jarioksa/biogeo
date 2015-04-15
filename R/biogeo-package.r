@@ -19,13 +19,15 @@ NULL
 #'   \item{Tmomin}{Mean temperature of the coldest month.}
 #'   \item{Tmomax}{Mean temperature of the warmest month.}
 #'   \item{PET}{Thornthwaite's Potential Evapotranspiration
-#'     calculated with \code{\link{PEThorn}}.}
+#'     calculated with \code{\link{PEThorn}} with options
+#'     \code{heatlimitUSA=FALSE} and \code{daylimit50=FALSE}.}
 #'   \item{Cont}{Conrad's thermal continentality index.}
 #'   \item{Prectot}{Total annual precipitation in mm.}
 #'   \item{Precsummer}{Precipitation in summer half-year.}
-#'   \item{PEdiff}{Difference of \code{Prectot} and \code{PET}.}
+#'   \item{PEdiff}{Difference \code{PET - Prectot}.}
 #'   \item{PrecCV}{Coefficient of variation of monthly precipitation.}
-#'   \item{PEratio}{Ratio of \code{Prec} and \code{PET}.}
+#'   \item{PEratio}{Ratio of \code{Prectot/PET}. This is taken as
+#'   \eqn{1} if \code{PET == 0}.}
 #'   \item{Precsummerat}{Ratio of \code{Precsummer} and \code{Prec}.}
 #'   \item{PETHar, PETHarM}{Hargreaves PET and modified Hargreaves PET
 #'     calculated with \code{\link[SPEI]{hargreaves}} (\pkg{SPEI} package).}
