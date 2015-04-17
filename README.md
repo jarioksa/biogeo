@@ -11,7 +11,7 @@ I wanted to have maps with standard projections such as UTM for
 smaller areas and Lambert Azimuthal Equal Area for wider
 areas. Function `projectedmap` can be used to draw a projected map
 that completely includes the given range of latitude and longitude,
-and `spoccmap` displays species occurrences in such maps as extracted
+and `occpmap` displays species occurrences in such maps as extracted
 from [Global Biodiversity Information Facility](http://gbif.org) using
 the **spocc** package.
 
