@@ -32,13 +32,7 @@ attempt at finding PET from readily available meteorological
 data. Thornthwaite (1948) used different models for hot and cool
 months with limit of 26.5 degrees C. Same monthly mean temperature
 generated lower PET in hot than in cool climate, and this was
-accommodated for by a \sQuote{heat index}. The cool and hot climate
-equations should generate the same (approximately) PET at 26.5
-degrees C, but this only happens in the range of \sQuote{heat
-index} within U.S.A. excluding Alaska and high altitude Rocky
-Mountains. \code{PEThorn} function will restrict the value of the
-\code{heat index} into this U.S. range. Details can be interpreted
-from the source code.
+accommodated for by a \sQuote{heat index}.
 }
 \details{
 Function \code{\link[SPEI]{thornthwaite}} (package \pkg{SPEI})
