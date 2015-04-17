@@ -12,11 +12,12 @@ smaller areas and Lambert Azimuthal Equal Area for wider
 areas. Function `projectedmap` can be used to draw a projected map
 that completely includes the given range of latitude and longitude,
 and `spoccmap` displays species occurrences in such maps as extracted
-from [gbif.org](http://gbif.org) using the **spocc** package.
+from [Global Biodiversity Information Facility](http://gbif.org) using
+the **spocc** package.
 
 ## Walter diagrams of climate
 
-Function `walterplot` draws a simplified, colourful climatic diagrams
+Function `walterplot` draws simplified, colourful climatic diagrams
 that are suitable for slides.
 
 ## Thornthwaite's Potential Evapotranspiration
