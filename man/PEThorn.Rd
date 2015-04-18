@@ -16,25 +16,51 @@ degrees C.}
 \item{monthly}{(logical) Return monthly values instead of annual total.}
 
 \item{heatlimitUSA}{(logical) Limit heat index to calibrated values
-within USA.}
+within the U.S.A.}
 
 \item{daylimit50}{(logical) Do not use latitudes >50 in daylength
 calculation.}
 }
 \value{
-Annual potential evapotranspiration in mm.
+Annual potential evapotranspiration in mm, or monthly
+values if \code{monthly=TRUE}.
 }
 \description{
 Function estimates the Potential Evapotranspiration (PET) from
 monthly mean temperatures following Thornthwaite (1948). The
 original equations were calibrated for U.S.A., and were the first
 attempt at finding PET from readily available meteorological
-data. Thornthwaite (1948) used different models for hot and cool
-months with limit of 26.5 degrees C. Same monthly mean temperature
-generated lower PET in hot than in cool climate, and this was
-accommodated for by a \sQuote{heat index}.
+data.
 }
 \details{
+Thornthwaite (1948) used different models for hot and cool months
+with limit of 26.5 degrees C. Below 26.5 C, same monthly mean
+temperature generated lower PET in hot than in cool climate, and
+this was accommodated for by a \sQuote{heat index}. The monthly
+contribution to the heat index is \eqn{I = (T/5)^1.514}, where
+\eqn{T} is the monthly mean temperature, and the heat index is the
+sume of monthly values. Below 26.5 C the monthly PET for is
+calculated as \eqn{16 (10 T/I)^A}{16*(10*T/I)^A}, where the
+exponent \eqn{A} is defined so that with all values of \eqn{I} the
+monthly PET will be 135 mm at 26.5 degrees C. Thornthwaite (1948)
+gives a third degree polynomial to find \eqn{A} from \eqn{I}, and
+this works fairly well within the range \eqn{I = 20 \dots 140}
+which covers the U.S.A. except Alaska and Northwestern high
+mountains, but fails badly in hotter and cooler climates. The
+original polynomial model restricted to the valid range is used
+with option \code{heatlimitUSA=TRUE}. If this argument is
+\code{FALSE}, we use instead a more accurate derivation of exponent
+\eqn{A} that is also valid outside the U.S.A. range, and gives
+similar results within U.S.A. (this is unpublished and developed
+here: see the code). Above 26.5 C, Thornthwaite (1948)
+tabulated PET against monthly mean. The tabulated values seem to be
+derived from a parabolic model, and we use coefficients of a second
+degree polynomial fitted to the tabulated values. The monthly PET
+values are for 12 hours day length, and they are adjusted to the
+actual day length of the latitude. If \code{daylimit50=TRUE}, we
+use day length at 50 degrees latitude for all more extreme
+locations, like suggested by Thornthwaite (1948).
+
 Function \code{\link[SPEI]{thornthwaite}} (package \pkg{SPEI})
 provides an alternative implementation, but it uses the same basic
 equations also in hot climates (montly mean > 26.5 degrees), and
