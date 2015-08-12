@@ -40,6 +40,7 @@
 #' \code{\link{projectedmap}}.
 #'
 #' @importFrom spocc occ occ2df
+#' @importFrom graphics points mtext title
 #' 
 #' @export
 `occpmap` <- function(query, CRS = "+proj=longlat", extent,

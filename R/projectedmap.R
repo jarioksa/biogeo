@@ -29,6 +29,7 @@
 #' @import rgdal
 #' @importFrom rworldmap getMap
 #' @importFrom spocc occ2df
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' ## Lambert Azimuthal Equal Area: EU recommendation

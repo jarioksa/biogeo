@@ -34,6 +34,7 @@
 #' @param mrange Minimum range of y-axis in temperature units.
 #' @param lwd Line width of temperature and precipitation lines.
 #'
+#' @importFrom graphics polygon lines axis abline
 #' @export
 `walterplot` <-
     function(temp, prec, title, south = FALSE, ylim, mrange, lwd=3)

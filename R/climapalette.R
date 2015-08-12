@@ -21,6 +21,7 @@
 #' @param humidity,continentality,temperature Environmental variables
 #' used for red, green and blue in colours.
 #'
+#' @importFrom grDevices rgb
 #' @export
 `climapalette` <-
     function (type, humidity, continentality, temperature) 
