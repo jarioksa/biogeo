@@ -94,7 +94,7 @@
     ## change extent to the output projection, and keep the points
     extent <- spTransform(extent, CRS(CRS))
     ## Look for limits to give the projected extent
-    clip <- as.vector(extent(extent))
+    clip <- as.vector(t(extent@bbox))
     ## maps are in equal aspect ratio, and padding is defined in
     ## absolute projected units
     if (pad > 0) {
