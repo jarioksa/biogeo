@@ -25,7 +25,7 @@
 #' 
 #' @import sp
 #' @importFrom rgeos gIntersection
-#' @importFrom raster extent as.vector
+#' @importFrom raster extent
 #' @import rgdal
 #' @importFrom rworldmap getMap
 #' @importFrom spocc occ2df
@@ -52,7 +52,7 @@
 #' plot(pl)
 #' points(attr(pl, "input"), pch=16, col=4)
 
-#' #' @export
+#' @export
 `projectedmap` <-
     function(extent, CRS = "+proj=longlat +datum=WGS84",
              inCRS = "+proj=longlat +datum=WGS84",

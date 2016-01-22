@@ -11,7 +11,7 @@
 #' @param knots Number of knots filled between corner points of the
 #' bounding points when defining the polygon.
 #'
-#' @importFrom raster extent as.vector
+#' @importFrom raster extent
 #' @import rgdal
 #' @import sp
 #' 
