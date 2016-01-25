@@ -19,7 +19,7 @@
 `projectedrect2wkt` <-
     function(object, knots = 7)
 {
-    ext <- as.vector(extent(object))
+    ext <- as.vector(t(bbox(object)))
     ## A projected rectangle in map unitis
     x <- seq(ext[1], ext[2], length=knots)
     y <- seq(ext[3], ext[4], length=knots)
