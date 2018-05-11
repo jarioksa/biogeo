@@ -1,14 +1,14 @@
 Package: biogeo
 Title: Tools for Biogeography Lectures
-Version: 0.1-0
-Date: 2015-04-14
+Version: 0.2-0
+Date: 2018-05-11
 Authors@R: person("Jari", "Oksanen", , "jari.oksanen@oulu.fi", role = c("aut", "cre"))
 Description: Tools for basic biogeographical analysis and display.
 Depends:
     R (>= 2.10),rworldmap,rgdal
 Imports:
     raster,rgeos,sp,spocc
-License: GPL-2
+License: MIT + file LICENCE
 LazyData: true
 URL: http://cc.oulu.fi/~jarioksa/
 RoxygenNote: 5.0.1
